@@ -29,3 +29,4 @@ format: ## Run black and isort
 
 # Testing
 .PHONY: test
+	pipenv run pytest .
