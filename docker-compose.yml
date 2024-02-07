@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  python:
+    build: "./containers/python"
+    container_name: python
+    command: /bin/bash -c "jupyter lab --notebook-dir=/code/notebooks --ip='*' --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''"
+    # env_file:
+    #  - .env
+    volumes:
+      - ./volumes/notebooks:/code/notebooks
+      - ./volumes/static:/code/data
+    ports:
+      - "8888:8888"
+
+  fastapi:
+    build: "./containers/fastapi"
+    container_name: fastapi
+    volumes:
+      - ./volumes/static:/code/data
+    ports:
+      - "8080:8080"
+    networks:
+      - deploy_network
+    container_name: fastapi
+
+  streamlit:
+    build: "./containers/streamlit"
+    container_name: streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - fastapi
+    networks:
+      - deploy_network
+    container_name: streamlit
+
+networks:
+  deploy_network:
+    driver: bridge
