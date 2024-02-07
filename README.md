@@ -9,6 +9,7 @@ The ultimate goal is to reduce the amount of spam messages that reach users' inb
 identifying and filtering out spam.
 
 Example:
+
 ● **Input:**
 
 "Subject: flow volumes at oxy gladewater , meter 98926
@@ -54,7 +55,7 @@ docker-compose up --build
 ```
 |-- containers - code
 |   |-- python      # interactive jupyter notebooks
-|   |-- fastapi     # deploy pickled model as a REST API 
+|   |-- fastapi     # deploy joblib model format as a REST API 
 |   |-- streamlit   # access REST API in a user interface 
 |-- volumes         # persistent data
 |   |-- notebooks   # jupyter notebooks / persisted here
